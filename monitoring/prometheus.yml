@@ -1,0 +1,17 @@
+# Prometheus scrape configuration for the capacity lab.
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # Prometheus scraping itself.
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # The Node/Express API — exposes default process, heap, GC & HTTP metrics
+  # at /metrics. Resolvable by service name on the compose network.
+  - job_name: 'capacity-api'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['capacity-api:3000']

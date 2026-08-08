@@ -1,0 +1,128 @@
+# =============================================================================
+# Regional Health service — local environment
+#
+# Services:
+#   mysql-db      MySQL 8.0        (primary relational store)
+#   mongo-db      MongoDB 6.0      (audit store)
+#   capacity-api  Node/Express     (the application)
+#   prometheus    metrics scraper  (:9090)
+#   grafana       dashboards       (:3001)
+# =============================================================================
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --innodb-lock-wait-timeout=5
+    environment:
+      MYSQL_ROOT_PASSWORD: labpassword
+      MYSQL_DATABASE: capacity_lab
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-plabpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - lab-net
+
+  mongo-db:
+    image: mongo:6.0
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - lab-net
+
+  capacity-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: capacity-api
+    environment:
+      PORT: 3000
+      # Let V8 believe it may grow its heap larger than the container can back,
+      # so an unbounded query (OPS-2204) over-commits and the kernel OOM-kills
+      # the process — a real crash + restart, not a graceful teeter at the cap.
+      NODE_OPTIONS: "--max-old-space-size=256"
+      MYSQL_HOST: mysql-db
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: labpassword
+      MYSQL_DATABASE: capacity_lab
+      MONGO_URI: mongodb://mongo-db:27017
+      MONGO_DB: capacity_lab
+    ports:
+      - "3000:3000"
+    volumes:
+      # Make the seed script runnable from inside the container.
+      - ./data-seed/seed.sh:/usr/local/bin/seed.sh:ro
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      mongo-db:
+        condition: service_started
+    # Production runs this service in a 256MB container. Locally we cap it at
+    # 160MB AND tell V8 it may grow its heap to 256MB (see NODE_OPTIONS above).
+    # That mismatch is the point: a container-aware Node would GC to survive, so
+    # under the nightly-export load (OPS-2204) V8 over-commits past the 160MB
+    # cgroup limit and the kernel OOM-kills the process — a real crash + restart
+    # loop, not a graceful teeter. Verified: RestartCount climbs, ~99% of
+    # requests fail during the storm, and the service recovers once it stops.
+    deploy:
+      resources:
+        limits:
+          memory: 160M
+    mem_limit: 160m
+    restart: unless-stopped
+    networks:
+      - lab-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - capacity-api
+    networks:
+      - lab-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      # Auto-provision the Prometheus datasource + a starter dashboard so
+      # students investigate systems, not Grafana setup.
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    networks:
+      - lab-net
+
+networks:
+  lab-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  mongo-data:
+  grafana-data:

@@ -1,0 +1,11 @@
+# Auto-provisions the Prometheus datasource so students don't wire it by hand.
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    uid: prometheus
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
