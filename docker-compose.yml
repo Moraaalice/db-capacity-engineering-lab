@@ -48,10 +48,16 @@ services:
     container_name: capacity-api
     environment:
       PORT: 3000
-      # Let V8 believe it may grow its heap larger than the container can back,
-      # so an unbounded query (OPS-2204) over-commits and the kernel OOM-kills
-      # the process — a real crash + restart, not a graceful teeter at the cap.
-      NODE_OPTIONS: "--max-old-space-size=256"
+      # V8 only starts GC'ing in earnest as the heap approaches
+      # --max-old-space-size — it has no idea this container's real ceiling
+      # is 160MB. At 256MB, V8 happily grows the heap past what the cgroup
+      # backs and the kernel OOM-kills the process outright (OPS-2204):
+      # streaming the export (see api/server.js) bounds *our* allocations,
+      # but V8 will still over-commit non-heap + heap past 160MB if we don't
+      # tell it the real budget. 112MB leaves ~48MB of the 160MB cgroup
+      # limit for non-heap memory (buffers, native code, thread stacks) so
+      # V8 collects proactively instead of the kernel intervening for it.
+      NODE_OPTIONS: "--max-old-space-size=112"
       MYSQL_HOST: mysql-db
       MYSQL_PORT: 3306
       MYSQL_USER: root

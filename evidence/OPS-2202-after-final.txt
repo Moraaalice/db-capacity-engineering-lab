@@ -1,0 +1,60 @@
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+time="2026-08-14T12:08:06Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/recent\": dial: i/o timeout"
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✗ 'rate<0.05' rate=77.58%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 47814  1365.80306/s
+    checks_succeeded...: 22.41% 10718 out of 47814
+    checks_failed......: 77.58% 37096 out of 47814
+
+    ✗ status is 200
+      ↳  22% — ✓ 10718 / ✗ 37096
+
+    HTTP
+    http_req_duration..............: avg=677.16ms min=0s     med=111.02ms max=29.09s p(90)=870.56ms p(95)=1.39s 
+      { expected_response:true }...: avg=2.08s    min=3.28ms med=614.4ms  max=29.09s p(90)=1.66s    p(95)=16.43s
+    http_req_failed................: 77.58% 37096 out of 47814
+    http_reqs......................: 47814  1365.80306/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.16s    min=7.82ms med=112.36ms max=32.93s p(90)=1.02s    p(95)=1.54s 
+    iterations.....................: 47814  1365.80306/s
+    vus............................: 175    min=175            max=2000
+    vus_max........................: 2000   min=2000           max=2000
+
+    NETWORK
+    data_received..................: 208 MB 6.0 MB/s
+    data_sent......................: 4.3 MB 124 kB/s
+
+
+
+
+running (35.0s), 0000/2000 VUs, 47814 complete and 118 interrupted iterations
+registration_surge ✓ [ 100% ] 0087/2000 VUs  30s
+time="2026-08-14T12:08:06Z" level=error msg="thresholds on metrics 'http_req_failed' have been crossed"

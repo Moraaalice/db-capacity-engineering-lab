@@ -1,0 +1,26 @@
+Captured via `dmesg | grep -i oom` after a SINGLE, unconcurrent
+GET /api/patients/export request against the original (unfixed) code:
+
+kernel: node invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=0
+kernel: oom_kill_process.cold+0xb/0xaf
+kernel: oom-kill:constraint=CONSTRAINT_MEMCG,nodemask=(null),cpuset=docker-b1f84e9527a4...scope,
+        mems_allowed=0,oom_memcg=/system.slice/docker-b1f84e9527a4...scope,
+        task_memcg=/system.slice/docker-b1f84e9527a4...scope,task=node,pid=942118,uid=0
+kernel: Memory cgroup out of memory: Killed process 942118 (node) total-vm:1285660kB,
+        anon-rss:157248kB, file-rss:40920kB, shmem-rss:0kB, UID:0 pgtables:4256kB oom_score_adj:0
+
+anon-rss:157248kB (~153.5MB) at kill time, against a 160MB (163840kB) cgroup
+mem_limit -- a single request pushed resident memory to within ~4% of the
+container's entire memory budget.
+
+Later, after batching+streaming the query (iteration 1/2 of the fix) but
+before bounding concurrent exports (iteration 3), the failure signature
+changed from a kernel OOM-kill to a V8-internal fatal error under 50
+concurrent exports (docker compose logs capacity-api):
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+[1:0x1bf60130]    23231 ms: Scavenge (reduce) 110.2 (113.3) -> 110.1 (113.3) MB, 2.82 / 0.00 ms
+[1:0x1bf60130]    23276 ms: Mark-Compact (reduce) 111.4 (114.0) -> 109.2 (113.3) MB, 28.59 / 0.01 ms
+ 1: 0xb78db3 node::OOMErrorHandler(char const*, v8::OOMDetails const&) [node]
+ ...
+capacity-api listening on :3000 (metrics at /metrics)   <- restart, ~24s later, repeats

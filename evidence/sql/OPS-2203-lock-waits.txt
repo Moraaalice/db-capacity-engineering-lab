@@ -1,0 +1,26 @@
+Captured mid-reproduction of reproduce-OPS-2203.js (500 concurrent admits to hospital id=1):
+
+mysql> SELECT ENGINE_TRANSACTION_ID, OBJECT_NAME, LOCK_TYPE, LOCK_MODE, LOCK_STATUS
+       FROM performance_schema.data_locks WHERE OBJECT_SCHEMA='capacity_lab' LIMIT 15;
+(15 rows, all TABLE IX locks granted on `hospitals` -- intention locks from
+each open transaction; the interesting contention is the row-level lock below)
+
+mysql> SELECT * FROM sys.innodb_lock_waits\G
+*************************** 1. row ***************************
+                wait_started: 2026-08-14 12:15:10
+                    wait_age: 00:00:05
+               wait_age_secs: 5
+                locked_table: `capacity_lab`.`hospitals`
+                locked_index: PRIMARY
+                 locked_type: RECORD
+              waiting_trx_id: 2368
+             waiting_query: UPDATE hospitals SET available_beds = available_beds - 1 WHERE id = 1
+             waiting_lock_mode: X,REC_NOT_GAP
+             blocking_trx_id: 2364
+                blocking_pid: 300
+            blocking_lock_mode: X,REC_NOT_GAP
+        blocking_trx_started: 2026-08-14 12:15:09
+     sql_kill_blocking_query: KILL QUERY 300
+sql_kill_blocking_connection: KILL 300
+(additional waiter rows omitted -- same pattern, all queued behind the same
+X,REC_NOT_GAP lock on the hospital's PK row)

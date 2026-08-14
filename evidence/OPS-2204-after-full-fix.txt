@@ -1,0 +1,60 @@
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+time="2026-08-14T12:49:33Z" level=warning msg="Request Failed" error="unexpected EOF"
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✗ 'rate<0.05' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 8966    68.710446/s
+    checks_succeeded...: 0.00%   0 out of 8966
+    checks_failed......: 100.00% 8966 out of 8966
+
+    ✗ status is 200
+      ↳  0% — ✓ 0 / ✗ 8966
+
+    HTTP
+    http_req_duration....: avg=694.37ms min=0s       med=0s       max=22.33s p(90)=0s      p(95)=0s     
+    http_req_failed......: 100.00% 8966 out of 8966
+    http_reqs............: 8966    68.710446/s
+
+    EXECUTION
+    iteration_duration...: avg=727.4ms  min=127.92µs med=831.87µs max=23.38s p(90)=12.46ms p(95)=21.41ms
+    iterations...........: 8966    68.710446/s
+    vus..................: 50      min=50           max=50
+    vus_max..............: 50      min=50           max=50
+
+    NETWORK
+    data_received........: 2.9 GB  22 MB/s
+    data_sent............: 30 kB   230 B/s
+
+
+
+
+running (2m10.5s), 00/50 VUs, 8966 complete and 0 interrupted iterations
+nightly_export ✓ [ 100% ] 50 VUs  2m0s
+time="2026-08-14T12:49:33Z" level=error msg="thresholds on metrics 'http_req_failed' have been crossed"

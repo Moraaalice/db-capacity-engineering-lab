@@ -1,0 +1,19 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
+*************************** 1. row ***************************
+       Table: patients
+Create Table: CREATE TABLE `patients` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(64) NOT NULL,
+  `last_name` varchar(64) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `diagnosis` varchar(255) NOT NULL,
+  `notes` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_patients_last_name` (`last_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=131071 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+EXPLAIN
+-> Index lookup on patients using idx_patients_last_name (last_name='Smith')  (cost=2371 rows=10000) (actual time=0.351..18.7 rows=10000 loops=1)\n
+Table	Non_unique	Key_name	Seq_in_index	Column_name	Collation	Cardinality	Sub_part	Packed	Null	Index_type	Comment	Index_comment	Visible	Expression
+patients	0	PRIMARY	1	id	A	98191	NULL	NULL		BTREE			YES	NULL
+patients	1	idx_patients_last_name	1	last_name	A	9	NULL	NULL		BTREE			YES	NULL

@@ -19,12 +19,19 @@ const MYSQL_CONFIG = {
   password: process.env.MYSQL_PASSWORD || 'labpassword',
   database: process.env.MYSQL_DATABASE || 'capacity_lab',
 
-  // Keep the pool small so we don't overwhelm the database with connections.
+  // Sized from measured service time: with connectionLimit=2 the plateau
+  // throughput was ~449 req/s -> W = 2/449 ~= 4.5ms per query. MySQL's
+  // max_connections is 151 and queries here are sub-10ms, so 20 connections
+  // gives headroom for ~4400 req/s before queueing (20/0.0045) while leaving
+  // most of max_connections free for other clients/replicas.
+  // queueLimit is bounded (not 0/unlimited) so a burst past capacity fails
+  // fast with a queue-limit error instead of piling up into multi-second
+  // waits — degrade gracefully rather than freeze.
   waitForConnections: true,
-  connectionLimit: 2,
-  queueLimit: 0,
+  connectionLimit: 20,
+  queueLimit: 200,
   connectTimeout: 10_000,
-  maxIdle: 2,
+  maxIdle: 20,
   idleTimeout: 60_000,
   enableKeepAlive: true,
 };

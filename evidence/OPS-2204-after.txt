@@ -1,0 +1,60 @@
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+time="2026-08-14T12:35:14Z" level=warning msg="Request Failed" error="Get \"http://capacity-api:3000/api/patients/export\": dial: i/o timeout"
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✗ 'rate<0.05' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 40227   335.122748/s
+    checks_succeeded...: 0.00%   0 out of 40227
+    checks_failed......: 100.00% 40227 out of 40227
+
+    ✗ status is 200
+      ↳  0% — ✓ 0 / ✗ 40227
+
+    HTTP
+    http_req_duration....: avg=24.94ms  min=0s       med=0s       max=2.24s p(90)=0s      p(95)=0s     
+    http_req_failed......: 100.00% 40227 out of 40227
+    http_reqs............: 40227   335.122748/s
+
+    EXECUTION
+    iteration_duration...: avg=149.16ms min=115.67µs med=932.57µs max=30s   p(90)=12.58ms p(95)=16.43ms
+    iterations...........: 40227   335.122748/s
+    vus..................: 50      min=50             max=50
+    vus_max..............: 50      min=50             max=50
+
+    NETWORK
+    data_received........: 64 MB   533 kB/s
+    data_sent............: 51 kB   422 B/s
+
+
+
+
+running (2m00.0s), 00/50 VUs, 40227 complete and 0 interrupted iterations
+nightly_export ✓ [ 100% ] 50 VUs  2m0s
+time="2026-08-14T12:35:17Z" level=error msg="thresholds on metrics 'http_req_failed' have been crossed"

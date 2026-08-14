@@ -1,0 +1,143 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: /scripts/reproduce-OPS-2201.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 200 max VUs, 1m0s max duration (incl. graceful stop):
+              * shift_change_search: 200 looping VUs for 30s (gracefulStop: 30s)
+
+
+running (0m00.9s), 200/200 VUs, 300 complete and 0 interrupted iterations
+shift_change_search   [   3% ] 200 VUs  00.9s/30s
+
+running (0m01.9s), 200/200 VUs, 801 complete and 0 interrupted iterations
+shift_change_search   [   6% ] 200 VUs  01.9s/30s
+
+running (0m02.9s), 200/200 VUs, 1282 complete and 0 interrupted iterations
+shift_change_search   [  10% ] 200 VUs  02.9s/30s
+
+running (0m03.9s), 200/200 VUs, 2024 complete and 0 interrupted iterations
+shift_change_search   [  13% ] 200 VUs  03.9s/30s
+
+running (0m04.9s), 200/200 VUs, 2815 complete and 0 interrupted iterations
+shift_change_search   [  16% ] 200 VUs  04.9s/30s
+
+running (0m05.9s), 200/200 VUs, 3603 complete and 0 interrupted iterations
+shift_change_search   [  20% ] 200 VUs  05.9s/30s
+
+running (0m06.9s), 200/200 VUs, 4484 complete and 0 interrupted iterations
+shift_change_search   [  23% ] 200 VUs  06.9s/30s
+
+running (0m07.9s), 200/200 VUs, 5345 complete and 0 interrupted iterations
+shift_change_search   [  26% ] 200 VUs  07.9s/30s
+
+running (0m08.9s), 200/200 VUs, 6143 complete and 0 interrupted iterations
+shift_change_search   [  30% ] 200 VUs  08.9s/30s
+
+running (0m09.9s), 200/200 VUs, 6925 complete and 0 interrupted iterations
+shift_change_search   [  33% ] 200 VUs  09.9s/30s
+
+running (0m10.9s), 200/200 VUs, 7607 complete and 0 interrupted iterations
+shift_change_search   [  36% ] 200 VUs  10.9s/30s
+
+running (0m11.9s), 200/200 VUs, 8280 complete and 0 interrupted iterations
+shift_change_search   [  40% ] 200 VUs  11.9s/30s
+
+running (0m12.9s), 200/200 VUs, 9009 complete and 0 interrupted iterations
+shift_change_search   [  43% ] 200 VUs  12.9s/30s
+
+running (0m13.9s), 200/200 VUs, 9740 complete and 0 interrupted iterations
+shift_change_search   [  46% ] 200 VUs  13.9s/30s
+
+running (0m14.9s), 200/200 VUs, 10448 complete and 0 interrupted iterations
+shift_change_search   [  50% ] 200 VUs  14.9s/30s
+
+running (0m15.9s), 200/200 VUs, 11257 complete and 0 interrupted iterations
+shift_change_search   [  53% ] 200 VUs  15.9s/30s
+
+running (0m16.9s), 200/200 VUs, 11786 complete and 0 interrupted iterations
+shift_change_search   [  56% ] 200 VUs  16.9s/30s
+
+running (0m17.9s), 200/200 VUs, 12525 complete and 0 interrupted iterations
+shift_change_search   [  60% ] 200 VUs  17.9s/30s
+
+running (0m18.9s), 200/200 VUs, 13260 complete and 0 interrupted iterations
+shift_change_search   [  63% ] 200 VUs  18.9s/30s
+
+running (0m19.9s), 200/200 VUs, 13904 complete and 0 interrupted iterations
+shift_change_search   [  66% ] 200 VUs  19.9s/30s
+
+running (0m20.9s), 200/200 VUs, 14498 complete and 0 interrupted iterations
+shift_change_search   [  70% ] 200 VUs  20.9s/30s
+
+running (0m21.9s), 200/200 VUs, 15240 complete and 0 interrupted iterations
+shift_change_search   [  73% ] 200 VUs  21.9s/30s
+
+running (0m22.9s), 200/200 VUs, 16125 complete and 0 interrupted iterations
+shift_change_search   [  76% ] 200 VUs  22.9s/30s
+
+running (0m23.9s), 200/200 VUs, 17059 complete and 0 interrupted iterations
+shift_change_search   [  80% ] 200 VUs  23.9s/30s
+
+running (0m24.9s), 200/200 VUs, 18007 complete and 0 interrupted iterations
+shift_change_search   [  83% ] 200 VUs  24.9s/30s
+
+running (0m25.9s), 200/200 VUs, 18874 complete and 0 interrupted iterations
+shift_change_search   [  86% ] 200 VUs  25.9s/30s
+
+running (0m26.9s), 200/200 VUs, 19820 complete and 0 interrupted iterations
+shift_change_search   [  90% ] 200 VUs  26.9s/30s
+
+running (0m27.9s), 200/200 VUs, 20675 complete and 0 interrupted iterations
+shift_change_search   [  93% ] 200 VUs  27.9s/30s
+
+running (0m28.9s), 200/200 VUs, 21361 complete and 0 interrupted iterations
+shift_change_search   [  96% ] 200 VUs  28.9s/30s
+
+running (0m29.9s), 200/200 VUs, 22100 complete and 0 interrupted iterations
+shift_change_search   [ 100% ] 200 VUs  29.9s/30s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✗ 'p(95)<300' p(95)=380.41ms
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 22351   739.721299/s
+    checks_succeeded...: 100.00% 22351 out of 22351
+    checks_failed......: 0.00%   0 out of 22351
+
+    ✓ status is 200
+
+    HTTP
+    http_req_duration..............: avg=269.01ms min=35.23ms med=231.39ms max=5.95s p(90)=332.72ms p(95)=380.41ms
+      { expected_response:true }...: avg=269.01ms min=35.23ms med=231.39ms max=5.95s p(90)=332.72ms p(95)=380.41ms
+    http_req_failed................: 0.00%  0 out of 22351
+    http_reqs......................: 22351  739.721299/s
+
+    EXECUTION
+    iteration_duration.............: avg=269.22ms min=35.5ms  med=231.51ms max=5.99s p(90)=332.89ms p(95)=380.58ms
+    iterations.....................: 22351  739.721299/s
+    vus............................: 200    min=200        max=200
+    vus_max........................: 200    min=200        max=200
+
+    NETWORK
+    data_received..................: 395 MB 13 MB/s
+    data_sent......................: 2.4 MB 79 kB/s
+
+
+
+
+running (0m30.2s), 000/200 VUs, 22351 complete and 0 interrupted iterations
+shift_change_search ✓ [ 100% ] 200 VUs  30s
+time="2026-08-14T12:14:38Z" level=error msg="thresholds on metrics 'http_req_duration' have been crossed"
